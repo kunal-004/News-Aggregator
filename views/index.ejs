@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Aggregator</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>News Aggregator</h1>
+        <form action="/" method="GET">
+            <input type="text" name="query" placeholder="Type to search...">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+
+    <main>
+        <% if (news && news.length) { %>
+            <% news.forEach(article=> { %>
+                <article class="article">
+                    <div class="image">
+                        <img src="<%= article.urlToImage %>" alt="<%= article.title %>">
+                    </div>
+                    <div class="content">
+                        <h2><a href="<%= article.url %>" target="_blank">
+                                <%= article.title %>
+                            </a></h2>
+                        <p>
+                            <%= article.description %>
+                        </p>
+                        <div class="source">Source: <%= article.source.name %>
+                        </div>
+                    </div>
+                </article>
+                <% }); %>
+                    <% } else { %>
+                        <p>No news articles found.</p>
+                        <% } %>
+    </main>
+</body>
+
+</html>
